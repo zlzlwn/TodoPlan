@@ -1,10 +1,3 @@
-//
-//  AddView.swift
-//  TodoList
-//
-//  Created by Nick Sarno on 3/2/21.
-//
-
 import SwiftUI
 
 struct AddView: View {
@@ -14,10 +7,12 @@ struct AddView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var listViewModel: ListViewModel
     @State var textFieldText: String = ""
+    // 날짜 선택 변수
+    @State var selectedDate: Date = Date()
     
     @State var alertTitle: String = ""
     @State var showAlert: Bool = false
-    
+
     // MARK: BODY
     
     var body: some View {
@@ -26,8 +21,11 @@ struct AddView: View {
                 TextField("Type something here...", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
-//                    .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
+                
+                DatePicker("Due Date", selection: $selectedDate, displayedComponents: .date)
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
                 
                 Button(action: saveButtonPressed, label: {
                     Text("Save".uppercased())
@@ -49,7 +47,7 @@ struct AddView: View {
     
     func saveButtonPressed() {
         if textIsAppropriate() {
-            listViewModel.addItem(title: textFieldText)
+            listViewModel.addItem(title: textFieldText, date: selectedDate)
             presentationMode.wrappedValue.dismiss()
         }
     }
@@ -69,7 +67,7 @@ struct AddView: View {
     
 }
 
-    // MARK: PREVIEW
+// MARK: PREVIEW
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
@@ -84,7 +82,6 @@ struct AddView_Previews: PreviewProvider {
             }
             .preferredColorScheme(.dark)
             .environmentObject(ListViewModel())
-
         }
     }
 }

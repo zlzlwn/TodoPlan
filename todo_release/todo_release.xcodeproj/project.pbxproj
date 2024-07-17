@@ -17,6 +17,9 @@
 		A77F74342C40D4DC00751F06 /* NoltemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F74332C40D4DC00751F06 /* NoltemView.swift */; };
 		A77F74372C40D52300751F06 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F74362C40D52300751F06 /* ItemModel.swift */; };
 		A77F743A2C40D55600751F06 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F74392C40D55600751F06 /* ListViewModel.swift */; };
+		A77F743C2C452A3900751F06 /* SearchVBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F743B2C452A3900751F06 /* SearchVBar.swift */; };
+		A77F743E2C454CFB00751F06 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F743D2C454CFB00751F06 /* CalendarView.swift */; };
+		A77F74412C465D0100751F06 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F74402C465D0100751F06 /* SplashView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		A77F74332C40D4DC00751F06 /* NoltemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoltemView.swift; sourceTree = "<group>"; };
 		A77F74362C40D52300751F06 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		A77F74392C40D55600751F06 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		A77F743B2C452A3900751F06 /* SearchVBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVBar.swift; sourceTree = "<group>"; };
+		A77F743D2C454CFB00751F06 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		A77F74402C465D0100751F06 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,10 +93,13 @@
 		A77F742B2C40D2BF00751F06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A77F743F2C465CF100751F06 /* Splash */,
 				A77F742C2C40D2D100751F06 /* ListView.swift */,
 				A77F742F2C40D2EE00751F06 /* AddView.swift */,
 				A77F74312C40D30700751F06 /* ListRowView.swift */,
 				A77F74332C40D4DC00751F06 /* NoltemView.swift */,
+				A77F743B2C452A3900751F06 /* SearchVBar.swift */,
+				A77F743D2C454CFB00751F06 /* CalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,6 +118,14 @@
 				A77F74392C40D55600751F06 /* ListViewModel.swift */,
 			);
 			path = VM;
+			sourceTree = "<group>";
+		};
+		A77F743F2C465CF100751F06 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				A77F74402C465D0100751F06 /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,9 +198,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A77F743E2C454CFB00751F06 /* CalendarView.swift in Sources */,
+				A77F74412C465D0100751F06 /* SplashView.swift in Sources */,
 				A77F74302C40D2EE00751F06 /* AddView.swift in Sources */,
 				A77F741F2C3F8FA600751F06 /* ContentView.swift in Sources */,
 				A77F74322C40D30700751F06 /* ListRowView.swift in Sources */,
+				A77F743C2C452A3900751F06 /* SearchVBar.swift in Sources */,
 				A77F74342C40D4DC00751F06 /* NoltemView.swift in Sources */,
 				A77F74372C40D52300751F06 /* ItemModel.swift in Sources */,
 				A77F741D2C3F8FA600751F06 /* todo_releaseApp.swift in Sources */,

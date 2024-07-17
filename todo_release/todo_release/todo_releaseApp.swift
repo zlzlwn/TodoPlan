@@ -11,7 +11,7 @@ import SwiftUI
 struct todo_releaseApp: App {
     var body: some Scene {
         WindowGroup {
-            ListView()
+            SplashView()
         }
     }
 }

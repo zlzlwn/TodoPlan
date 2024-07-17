@@ -1,4 +1,3 @@
-// ListViewModel.swift
 import Foundation
 import SQLite3
 
@@ -27,7 +26,8 @@ class ListViewModel: ObservableObject {
         CREATE TABLE IF NOT EXISTS items(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT,
-            isCompleted INTEGER
+            isCompleted INTEGER,
+            date TEXT
         );
         """
         
@@ -58,7 +58,13 @@ class ListViewModel: ObservableObject {
                 let title = String(cString: sqlite3_column_text(queryStatement, 1))
                 let isCompleted = sqlite3_column_int(queryStatement, 2) != 0
                 
-                items.append(ItemModel(id: id, title: title, isCompleted: isCompleted))
+                var date = Date()
+                if let dateText = sqlite3_column_text(queryStatement, 3) {
+                    let dateString = String(cString: dateText)
+                    date = ISO8601DateFormatter().date(from: dateString) ?? Date()
+                }
+                
+                items.append(ItemModel(id: id, title: title, isCompleted: isCompleted, date: date))
             }
         } else {
             print("SELECT statement could not be prepared")
@@ -67,13 +73,15 @@ class ListViewModel: ObservableObject {
         sqlite3_finalize(queryStatement)
     }
     
-    func addItem(title: String) {
-        let insertStatementString = "INSERT INTO items (title, isCompleted) VALUES (?, ?);"
+    func addItem(title: String, date: Date) {
+        let insertStatementString = "INSERT INTO items (title, isCompleted, date) VALUES (?, ?, ?);"
         var insertStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             sqlite3_bind_text(insertStatement, 1, (title as NSString).utf8String, -1, nil)
             sqlite3_bind_int(insertStatement, 2, 0)
+            let dateString = ISO8601DateFormatter().string(from: date)
+            sqlite3_bind_text(insertStatement, 3, (dateString as NSString).utf8String, -1, nil)
             
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("Successfully inserted row.")
@@ -90,12 +98,14 @@ class ListViewModel: ObservableObject {
     }
     
     func updateItem(item: ItemModel) {
-        let updateStatementString = "UPDATE items SET isCompleted = ? WHERE id = ?;"
+        let updateStatementString = "UPDATE items SET isCompleted = ?, date = ? WHERE id = ?;"
         var updateStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(updateStatement, 1, item.isCompleted ? 0 : 1)
-            sqlite3_bind_int64(updateStatement, 2, item.id)
+            sqlite3_bind_int(updateStatement, 1, item.isCompleted ? 1 : 0)
+            let dateString = ISO8601DateFormatter().string(from: item.date)
+            sqlite3_bind_text(updateStatement, 2, (dateString as NSString).utf8String, -1, nil)
+            sqlite3_bind_int64(updateStatement, 3, item.id)
             
             if sqlite3_step(updateStatement) == SQLITE_DONE {
                 print("Successfully updated row.")
@@ -137,9 +147,6 @@ class ListViewModel: ObservableObject {
     
     func moveItem(from source: IndexSet, to destination: Int) {
         items.move(fromOffsets: source, toOffset: destination)
-        // Note: SQLite doesn't support direct reordering.
-        // If you need to maintain order, you might want to add an 'order' column
-        // and update it here.
     }
     
     deinit {
