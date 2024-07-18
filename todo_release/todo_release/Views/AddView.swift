@@ -1,87 +1,31 @@
 import SwiftUI
 
 struct AddView: View {
-    
-    // MARK: PROPERTIES
-    
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var listViewModel: ListViewModel
-    @State var textFieldText: String = ""
-    // 날짜 선택 변수
-    @State var selectedDate: Date = Date()
-    
-    @State var alertTitle: String = ""
-    @State var showAlert: Bool = false
-
-    // MARK: BODY
+    @Binding var title: String
+    @Binding var memo: String
+    @Binding var date: Date
+    var onSave: () -> Void
+    var buttonTitle: String
     
     var body: some View {
-        ScrollView {
-            VStack {
-                TextField("Type something here...", text: $textFieldText)
-                    .padding(.horizontal)
-                    .frame(height: 55)
-                    .cornerRadius(10)
-                
-                DatePicker("Due Date", selection: $selectedDate, displayedComponents: .date)
-                    .padding(.horizontal)
-                    .padding(.vertical, 10)
-                
-                Button(action: saveButtonPressed, label: {
-                    Text("Save".uppercased())
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.accentColor)
-                        .cornerRadius(10)
-                })
+        NavigationView {
+            Form {
+                Section(header: Text("일정 정보")) {
+                    TextField("일정을 입력해주세요.", text: $title)
+                    TextField("메모를 입력해주세요.", text: $memo)
+                    DatePicker("날짜 및 시간", selection: $date)
+                }
             }
-            .padding(14)
+            .navigationTitle(buttonTitle == "추가" ? "일정 추가하기" : "일정 수정하기")
+            .navigationBarItems(
+                leading: Button("취소") {
+                    // 취소 로직
+                },
+                trailing: Button(buttonTitle) {
+                    onSave()
+                }
+            )
         }
-        .navigationTitle("Add an Item 🖊")
-        .alert(isPresented: $showAlert, content: getAlert)
-    }
-    
-    // MARK: FUNCTIONS
-    
-    func saveButtonPressed() {
-        if textIsAppropriate() {
-            listViewModel.addItem(title: textFieldText, date: selectedDate)
-            presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
-    func textIsAppropriate() -> Bool {
-        if textFieldText.count < 3 {
-            alertTitle = "Your new todo item must be at least 3 characters long!!! 😨😰😱"
-            showAlert.toggle()
-            return false
-        }
-        return true
-    }
-    
-    func getAlert() -> Alert {
-        return Alert(title: Text(alertTitle))
-    }
-    
-}
-
-// MARK: PREVIEW
-
-struct AddView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            NavigationView {
-                AddView()
-            }
-            .preferredColorScheme(.light)
-            .environmentObject(ListViewModel())
-            NavigationView {
-                AddView()
-            }
-            .preferredColorScheme(.dark)
-            .environmentObject(ListViewModel())
-        }
+        .presentationDetents([.height(300)])
     }
 }

@@ -88,7 +88,7 @@ struct DayView: View {
                 Text(event.title)
                     .font(.system(size: 8))
                     .lineLimit(1)
-                    .foregroundColor(event.isCompleted ? .green : .blue)
+                    .foregroundColor(event.isCompleted ? .green : .red)
             }
         }
         .padding(4)

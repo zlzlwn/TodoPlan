@@ -10,6 +10,9 @@ struct ListRowView: View {
             VStack(alignment: .leading) {
                 Text(item.title)
                     .font(.title2)
+                Text(item.memo)
+                    .font(.system(size: 10))
+                    
                 Text(item.date, style: .date)
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -21,8 +24,8 @@ struct ListRowView: View {
 }
 
 struct ListRowView_Previews: PreviewProvider {
-    static var item1 = ItemModel(id: 1, title: "First item!", isCompleted: false, date: Date())
-    static var item2 = ItemModel(id: 2, title: "Second Item.", isCompleted: true, date: Date().addingTimeInterval(86400))
+    static var item1 = ItemModel(id: 1, title: "First item!", memo: "sss", isCompleted: false, date: Date())
+    static var item2 = ItemModel(id: 2, title: "Second Item.", memo: "ssss", isCompleted: true, date: Date().addingTimeInterval(86400))
     
     static var previews: some View {
         Group {

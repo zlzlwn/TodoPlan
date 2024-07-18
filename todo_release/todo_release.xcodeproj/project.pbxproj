@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A76615562C48D69C000AE0A6 /* ItemEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76615552C48D69C000AE0A6 /* ItemEditView.swift */; };
 		A77F741D2C3F8FA600751F06 /* todo_releaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F741C2C3F8FA600751F06 /* todo_releaseApp.swift */; };
 		A77F741F2C3F8FA600751F06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F741E2C3F8FA600751F06 /* ContentView.swift */; };
 		A77F74212C3F8FA800751F06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A77F74202C3F8FA800751F06 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A76615552C48D69C000AE0A6 /* ItemEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditView.swift; sourceTree = "<group>"; };
 		A77F74192C3F8FA600751F06 /* todo_release.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo_release.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77F741C2C3F8FA600751F06 /* todo_releaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todo_releaseApp.swift; sourceTree = "<group>"; };
 		A77F741E2C3F8FA600751F06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				A77F74332C40D4DC00751F06 /* NoltemView.swift */,
 				A77F743B2C452A3900751F06 /* SearchVBar.swift */,
 				A77F743D2C454CFB00751F06 /* CalendarView.swift */,
+				A76615552C48D69C000AE0A6 /* ItemEditView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77F743E2C454CFB00751F06 /* CalendarView.swift in Sources */,
+				A76615562C48D69C000AE0A6 /* ItemEditView.swift in Sources */,
 				A77F74412C465D0100751F06 /* SplashView.swift in Sources */,
 				A77F74302C40D2EE00751F06 /* AddView.swift in Sources */,
 				A77F741F2C3F8FA600751F06 /* ContentView.swift in Sources */,

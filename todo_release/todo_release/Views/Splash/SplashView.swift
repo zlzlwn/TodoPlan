@@ -33,12 +33,15 @@ struct SplashView: View {
 //                            .background(Color.white)
 //                            .frame(width: 200, height: 100)
 //                            .offset(x: 0, y: 100)
-                        
-                        Text("이거알림")
+                        Image("appIcon3")
+                    .resizable()
+                    .frame(width: 250,height: 100)
+                            
+                        Text("TodoPlan")
                             .font(.system(size: 40, weight: .bold, design: .rounded))
                             .foregroundColor(.black)
                             .offset(y: 120)
-                
+//                
             }
             
             Spacer()
@@ -46,7 +49,7 @@ struct SplashView: View {
             
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 withAnimation {
                     self.isActive = true
                 }
